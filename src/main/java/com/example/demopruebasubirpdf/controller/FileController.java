@@ -60,7 +60,7 @@ public class FileController {
 	public void getPdf(HttpServletResponse response,@PathVariable String filename, String lugar) throws IOException {
 		response.setContentType("application/pdf");
 		String rutacarpeta= ruta(lugar);
-		String rutatotal=rutacarpeta+"\\"+filename;
+		String rutatotal=rutacarpeta+"/"+filename;
 		InputStream inputStream = new FileInputStream(rutatotal);
         OutputStream outputStream = response.getOutputStream();
         int bytesRead;
@@ -75,7 +75,7 @@ public class FileController {
 	@GetMapping("/eliminar/{filename:.+}")
 	public ResponseEntity<Response> deletePdf(HttpServletResponse response,@PathVariable String filename, String lugar) throws IOException {
 		String rutacarpeta= ruta(lugar);
-		String rutatotal=rutacarpeta+"\\"+filename;;
+		String rutatotal=rutacarpeta+"/"+filename;;
 		java.io.File archivo = new java.io.File(rutatotal);
 		if (archivo.exists()) {
 			FileSystemUtils.deleteRecursively(archivo);
