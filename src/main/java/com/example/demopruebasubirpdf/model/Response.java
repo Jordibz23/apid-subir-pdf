@@ -1,7 +1,7 @@
 package com.example.demopruebasubirpdf.model;
 
 public class Response {
-	private String message;	
+	private String message;
 	
 	public Response(String message) {
 		this.message = message;

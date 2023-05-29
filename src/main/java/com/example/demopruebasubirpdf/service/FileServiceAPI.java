@@ -13,4 +13,5 @@ public interface FileServiceAPI {
 	public void save(List<MultipartFile> files,String nombre) throws Exception;
 	public Stream<Path> loadAll(String carpeta) throws Exception;
 	public void nombreFolder(String carpeta) throws Exception;
+	public void crearCarpetaPorDocente(String carpeta) throws Exception;
 }

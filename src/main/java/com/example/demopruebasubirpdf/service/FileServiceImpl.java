@@ -15,22 +15,23 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileServiceImpl implements FileServiceAPI{
 
 	private Path rootFolder = Paths.get("uploads");
-	
+
 	@Override
 	public void nombreFolder(String carpeta) throws Exception {
 		if (!carpeta.isEmpty()) {
 			rootFolder = Paths.get(carpeta);
-		}		
+		}
 	}
-	
+
 	@Override
 	public void save(MultipartFile file,String carpeta) throws Exception {
 		nombreFolder(carpeta);
-		/*for (int i = 0; i < 10; i++) {
+        /*for (int i = 0; i < 10; i++) {
 			Path absolutePath = rootFolder.toAbsolutePath();
 			System.out.print(absolutePath.toString()+"\n mensaje");
-		}*/		
-		Files.copy(file.getInputStream(), this.rootFolder.resolve(file.getOriginalFilename()));		
+		}*/
+		System.out.println("Nombre de ruta "+this.rootFolder.resolve(file.getOriginalFilename()));
+		Files.copy(file.getInputStream(), this.rootFolder.resolve(file.getOriginalFilename()));
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class FileServiceImpl implements FileServiceAPI{
 	public void save(List<MultipartFile> files,String carpeta) throws Exception {
 		for (MultipartFile file : files) {
 			this.save(file,carpeta);
-		}		
+		}
 	}
 
 	@Override
@@ -53,6 +54,10 @@ public class FileServiceImpl implements FileServiceAPI{
 		return Files.walk(rootFolder, 1).filter(path -> !path.equals(rootFolder)).map(rootFolder::relativize);
 	}
 
-	
+	@Override
+	public void crearCarpetaPorDocente(String carpeta) throws Exception {
+		// TODO Auto-generated method stub
+	}
+
 
 }
